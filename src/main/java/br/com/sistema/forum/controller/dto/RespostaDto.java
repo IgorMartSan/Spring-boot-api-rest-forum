@@ -19,5 +19,25 @@ public RespostaDto(Resposta resposta) {
 }
 
 
+public long getId() {
+	return id;
+}
+
+
+public String getMensagem() {
+	return mensagem;
+}
+
+
+public LocalDateTime getDataCriacao() {
+	return dataCriacao;
+}
+
+
+public String getNomeAutor() {
+	return nomeAutor;
+}
+
+
 
 }

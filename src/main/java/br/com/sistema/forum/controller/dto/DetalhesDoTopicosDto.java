@@ -24,9 +24,38 @@ public class DetalhesDoTopicosDto {
 		this.dataCriacao = topico.getDataCriacao();
 		this.nomeAutor = topico.getAutor().getNome();
 		this.status = topico.getStatus();
-
+		
 		this.respostas = new ArrayList<RespostaDto>();
 		this.respostas.addAll(topico.getRespostas().stream().map(RespostaDto::new).collect(Collectors.toList()));
 	}
+
+	public long getId() {
+		return id;
+	}
+
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public String getMensagem() {
+		return mensagem;
+	}
+
+	public LocalDateTime getDataCriacao() {
+		return dataCriacao;
+	}
+
+	public String getNomeAutor() {
+		return nomeAutor;
+	}
+		 
+		 public StatusTopico getStatus() { return status;
+		 
+	}
+
+	public List<RespostaDto> getRespostas() {
+		return respostas;
+	}
+	
 
 }

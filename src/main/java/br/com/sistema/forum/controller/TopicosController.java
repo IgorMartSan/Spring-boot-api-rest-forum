@@ -39,8 +39,7 @@ public class TopicosController {
 	private CursoRepository cursoRepository;
 
 	@GetMapping
-	public List<TopicoDto> lista(String nomeCurso) {// recebe direto na url por um metodo http get ex:
-													// http://localhost:8080/topicos?nomecurso=nomeCurso
+	public List<TopicoDto> lista(String nomeCurso) {// recebe direto na url por um metodo http get ex:													// http://localhost:8080/topicos?nomecurso=nomeCurso
 		System.out.println("---------------------------------------" + nomeCurso);
 		if (nomeCurso == null) {
 			List<Topico> topicos = topicoRepository.findAll();
@@ -61,12 +60,9 @@ public class TopicosController {
 		return ResponseEntity.created(uri).body(new TopicoDto(topico));
 	}
 
-	@GetMapping("/{id}") // o pathvariable relaciona a variável que vem na url e joga na variável id que
-							// foi colocada no como parametro da função detalhar
+	@GetMapping("/{id}") // o pathvariable relaciona a variável que vem na url e joga na variável id que foi colocada no como parametro da função detalhar
 	public ResponseEntity<DetalhesDoTopicosDto> detalhar(@PathVariable("id") Long id) {
-
 		Optional<Topico> topico = topicoRepository.findById(id);
-
 		if (topico.isPresent()) {
 			return ResponseEntity.ok(new DetalhesDoTopicosDto(topico.get()));
 		} else {
@@ -75,10 +71,8 @@ public class TopicosController {
 
 	}
 
-	@PutMapping("/{id}") // atualizar um tópico, envia a pela url o id do topico e pelo corpo as
-							// atualizações
-	@Transactional // todo metodo que tiver um operação de escrita (salvar alterar e atualizar)
-					// deve ter o transactional para efetuar o comando para o banco de dados
+	@PutMapping("/{id}") // atualizar um tópico, envia a pela url o id do topico e pelo corpo as atualizações
+	@Transactional // todo metodo que tiver um operação de escrita (salvar alterar e atualizar) deve ter o transactional para efetuar o comando para o banco de dados
 	public ResponseEntity<TopicoDto> atualizar(@PathVariable("id") Long id,
 			@RequestBody @Valid AtualizacaoTopicoForm form) {
 		
@@ -88,13 +82,15 @@ public class TopicosController {
 			return ResponseEntity.ok(new TopicoDto(topico));
 		} else {
 			return ResponseEntity.notFound().build();
+			
+			System.
 		}
 
 	}
 
 	@DeleteMapping("/{id}") // deleta com base em um id
-	private ResponseEntity<?> publi(@PathVariable("id") Long id) {
-		Optional<Topico> topicoOptional = topicoRepository.findById(id);// Esse opitional verifica se existe primeiro no bando de dados, se sim e vai realizar a operação
+	private ResponseEntity<?> remover(@PathVariable("id") Long id) {
+		Optional<Topico> topicoOptional = topicoRepository.findById(id);// Esse Optional verifica se existe  primeiro no bando de dados se existe o ID, se sim e vai realizar a operação
 		if (topicoOptional.isPresent()) {
 			topicoRepository.deleteById(id);
 			return ResponseEntity.ok().build();
